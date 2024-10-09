@@ -1,0 +1,13 @@
+body {
+  background-color: #989787;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+button {
+  border-radius: 10px;
+  background-color: red;
+  font-weight: bold;
+  color: white;
+  margin: 2px;
+}
