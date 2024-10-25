@@ -10,7 +10,7 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [score, setScore] = useState(0);
   const [numberList, setNumberList] = useState([]);
-  const [guess, setGuess] = useState(0);
+  const [guess, setGuess] = useState('');
   const [clueList, setClueList] = useState(clues);
 
   const generateBoard = () => {
@@ -22,7 +22,14 @@ function App() {
   };
 
   const restart = () => {
-    setNumber(0);
+    setNumber(getRandomNumber(1, 100));
+    setShowClues(false);
+    setErrorMessage('');
+    setScore(0);
+    setNumberList([]);
+    generateBoard();
+    setGuess('');
+    setClueList(clues);
     console.clear();
   };
 
@@ -33,18 +40,26 @@ function App() {
 
   const processClues = () => {
     console.log('process clues button');
-    setScore(score + 5)
+    setScore(score + 5);
   };
 
   const guessButton = () => {
-    console.log('guess button');
+    if (guess === '0') {
+      setErrorMessage('Number cannot be 0 or greater than 100');
+      return;
+    }
+    if (guess !== number) {
+      setErrorMessage('Your guess was not correct');
+      return;
+    }
     if (number === guess) {
-      setErrorMessage('You guessed the number. Well done!')
+      setErrorMessage('You guessed the number. Well done!');
+      return;
     }
   };
 
   const gotoBoard = () => {
-    showClues === true ? setShowClues(false) : setShowClues(true)
+    showClues === true ? setShowClues(false) : setShowClues(true);
   };
 
   function aboutButton() {
@@ -61,37 +76,33 @@ function App() {
         <h1>Guess the Number</h1>
         <div className="score"> Score: {score}</div>
         <div>{errorMessage}</div>
-        <button onClick={() => aboutButton()}>
-        About
-      </button>
-      <button onClick={() => guessButton()}>
-        Guess
-      </button>
       </div>
       <p>Pick a CLUE to help you</p>
       {!showClues ? (
         <div>
-          <SelectClue
-            setErrorMessage={setErrorMessage}
-            setGuess={setGuess}
-            clueList={clueList}
-            setClueList={setClueList}
-            numberList={numberList}
-            setNumberList={setNumberList}
-          />
+          <button onClick={() => aboutButton()}>About</button>
+          <button onClick={() => guessButton()}>Guess</button>
+          <div>
+            <SelectClue
+              setErrorMessage={setErrorMessage}
+              guess={guess}
+              setGuess={setGuess}
+              clueList={clueList}
+              setClueList={setClueList}
+              numberList={numberList}
+              setNumberList={setNumberList}
+              number={number}
+            />
+          </div>
+          <button onClick={() => processClues()}>Process Clue</button>
         </div>
       ) : (
         <div>
-          <Board
-            errorMessage={errorMessage}
-            setErrorMessage={setErrorMessage}
-            numberList={numberList}
-          />
+          <Board errorMessage={errorMessage} setErrorMessage={setErrorMessage} numberList={numberList} />
         </div>
       )}
       <button onClick={() => restart()}>Restart</button>
-      <button onClick={() => processClues()}>Process Clue</button>
-      <button onClick={() => gotoBoard()}>Show Numbers</button>
+      <button onClick={() => gotoBoard()}>{showClues ? 'Show Clues' : 'Show Numbers'}</button>
     </div>
   );
 }
