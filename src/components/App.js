@@ -70,6 +70,8 @@ function App() {
     alert(alertMessage);
   }
 
+  //console.log('clueList',clueList)
+
   return (
     <div>
       <div className="App">

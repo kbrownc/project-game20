@@ -11,15 +11,18 @@ const SelectClue = ({
   number,
 }) => {
   const editClueInput = (e, i) => {
-    console.log('editClueInput');
     //const value = e.target.value.replace(/[^0-9]/gi, '');
     const value = e.target.value;
-    if (clueList[i].id === 1 && value !== '2' && value !== '') {
+    if (clueList[i].needsInput) {
+      console.log('freeform input')
+    }
+    if (clueList[i].id === 1 && value !== '2' && value !== '5' && value !== '') {
       setErrorMessage('Input not valid for this clue');
       return;
     }
     let workClueList = [...clueList];
     workClueList[i].clueInput = value;
+    //console.log('workClueList',workClueList,value,i)
     setClueList(workClueList);
   };
 
@@ -57,21 +60,22 @@ const SelectClue = ({
             />
             <label className="modal-label">{clue.clue}</label>
             {clue.needsInput ? (
-              // <input
-              //   required
-              //   name="value"
-              //   className="selected"
-              //   type="text"
-              //   value={clue.clueInput}
-              //   maxLength="3"
-              //   onChange={(e) => editClueInput(e,i)}
-              // />
-              <select value={clue.clueInput} onChange={e => editClueInput(e, i)}>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="5">5</option>
+              <input
+                required
+                name="value"
+                className="selected"
+                type="text"
+                value={clue.clueInput}
+                maxLength="2"
+                onChange={e => editClueInput(e, i)}
+              />
+            ) : (
+              <select onChange={e => editClueInput(e, i)}>
+                {clue.validInput.map((valid, i) => (
+                  <option key={i} value={valid}>{valid}</option>
+                ))}
               </select>
-            ) : null}
+            )}
           </div>
         ))}
         <br />
