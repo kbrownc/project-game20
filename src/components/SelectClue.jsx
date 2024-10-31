@@ -9,39 +9,72 @@ const SelectClue = ({
   numberList,
   setNumberList,
   number,
+  score,
+  setScore
 }) => {
   const editClueInput = (e, i) => {
-    //const value = e.target.value.replace(/[^0-9]/gi, '');
-    const value = e.target.value;
-    if (clueList[i].needsInput) {
-      console.log('freeform input')
-    }
-    if (clueList[i].id === 1 && value !== '2' && value !== '5' && value !== '') {
-      setErrorMessage('Input not valid for this clue');
-      return;
-    }
+    const value = e.target.value.replace(/[^0-9]/gi, '');
     let workClueList = [...clueList];
     workClueList[i].clueInput = value;
-    //console.log('workClueList',workClueList,value,i)
     setClueList(workClueList);
   };
 
   const editGuess = e => {
-    //const value = e.target.value.replace(/[^0-9]/gi, '');
-    const value = e.target.value;
+    const value = e.target.value.replace(/[^0-9]/gi, '');
     console.log('clue', guess, value, typeof value, typeof guess);
     setGuess(value);
   };
 
   function handleCheckboxChange(i) {
-    //console.log('clueList',clueList,i)
     let workClueList = [...clueList];
     if (workClueList[i].used === false) {
       workClueList[i].used = true;
     } else {
       workClueList[i].used = false;
     }
+    if (workClueList[i].clueInput === '') {
+      setErrorMessage('Input not supplied for this clue');
+      workClueList[i].used = false;
+    }
+    removeNumbers(i,workClueList)
     setClueList(workClueList);
+    setScore(score + 5);
+  }
+
+  function removeNumbers(i,workClueList) {
+    let workNumberList = [...numberList];
+    if (workClueList[i].id === '1') {
+      if (number % workClueList[i].clueInput !== 0) {
+        setErrorMessage('Number not divisible by chosen number');
+        console.log('not divisible',number,workClueList[i].clueInput)
+      } else {
+        for (let j = 0; j < workNumberList.length; j++) {
+          if (workNumberList[j] % workClueList[i].clueInput !== 0) {
+            workNumberList.splice(j,1)
+          }
+        }
+        console.log('divisible',number,workClueList[i].clueInput)
+        setNumberList(workNumberList)
+      }
+    }
+    if (workClueList[i].id === '2') {
+      if ((number < 10 && workClueList[i].clueInput === '2') ||
+          (number > 9 && workClueList[i].clueInput === '1')) {
+        setErrorMessage('Number has a different number of digits than that selected');
+        console.log('not divisible',number,workClueList[i].clueInput)
+      } else {
+        for (let j = 0; j < workNumberList.length; j++) {
+          if (workClueList[i].clueInput === '1' && workNumberList[j] > 9) {
+            workNumberList.splice(j,1)
+          }
+          if (workClueList[i].clueInput === '2' && workNumberList[j] < 10) {
+            workNumberList.splice(j,1)
+          }
+        }
+        console.log('1 or 2 digit',number,workClueList[i].clueInput)
+        setNumberList(workNumberList)
+      }
+    }
   }
 
   return (

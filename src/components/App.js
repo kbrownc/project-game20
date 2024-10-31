@@ -15,7 +15,7 @@ function App() {
 
   const generateBoard = () => {
     let workNumberList = [];
-    for (let i = 1; i < 101; i++) {
+    for (let i = 1; i < 100; i++) {
       workNumberList.push(i);
     }
     setNumberList(workNumberList);
@@ -37,11 +37,6 @@ function App() {
     setNumber(getRandomNumber(1, 100));
     generateBoard();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const processClues = () => {
-    console.log('process clues button');
-    setScore(score + 5);
-  };
 
   const guessButton = () => {
     if (guess === '0') {
@@ -70,8 +65,6 @@ function App() {
     alert(alertMessage);
   }
 
-  //console.log('clueList',clueList)
-
   return (
     <div>
       <div className="App">
@@ -94,9 +87,10 @@ function App() {
               numberList={numberList}
               setNumberList={setNumberList}
               number={number}
+              score={score}
+              setScore={setScore}
             />
           </div>
-          <button onClick={() => processClues()}>Process Clue</button>
         </div>
       ) : (
         <div>
