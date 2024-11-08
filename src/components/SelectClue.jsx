@@ -8,11 +8,12 @@ const SelectClue = ({
   setClueList,
   numberList,
   setNumberList,
-  number,
+  numberToGuess,
   score,
   setScore
 }) => {
   const editClueInput = (e, i) => {
+    // change value edit if inpout is string vs numeric?????????
     const value = e.target.value.replace(/[^0-9]/gi, '');
     let workClueList = [...clueList];
     workClueList[i].clueInput = value;
@@ -21,7 +22,6 @@ const SelectClue = ({
 
   const editGuess = e => {
     const value = e.target.value.replace(/[^0-9]/gi, '');
-    console.log('clue', guess, value, typeof value, typeof guess);
     setGuess(value);
   };
 
@@ -44,34 +44,34 @@ const SelectClue = ({
   function removeNumbers(i,workClueList) {
     let workNumberList = [...numberList];
     if (workClueList[i].id === '1') {
-      if (number % workClueList[i].clueInput !== 0) {
+      if (numberToGuess % workClueList[i].clueInput !== 0) {
         setErrorMessage('Number not divisible by chosen number');
-        console.log('not divisible',number,workClueList[i].clueInput)
       } else {
         for (let j = 0; j < workNumberList.length; j++) {
           if (workNumberList[j] % workClueList[i].clueInput !== 0) {
             workNumberList.splice(j,1)
           }
         }
-        console.log('divisible',number,workClueList[i].clueInput)
         setNumberList(workNumberList)
       }
     }
     if (workClueList[i].id === '2') {
-      if ((number < 10 && workClueList[i].clueInput === '2') ||
-          (number > 9 && workClueList[i].clueInput === '1')) {
+      if ((numberToGuess < 10 && workClueList[i].clueInput === '2') ||
+          (numberToGuess > 9 && workClueList[i].clueInput === '1')) {
         setErrorMessage('Number has a different number of digits than that selected');
-        console.log('not divisible',number,workClueList[i].clueInput)
       } else {
         for (let j = 0; j < workNumberList.length; j++) {
           if (workClueList[i].clueInput === '1' && workNumberList[j] > 9) {
             workNumberList.splice(j,1)
+            j--
+            setErrorMessage('');
           }
           if (workClueList[i].clueInput === '2' && workNumberList[j] < 10) {
             workNumberList.splice(j,1)
+            j--
+            setErrorMessage('');
           }
         }
-        console.log('1 or 2 digit',number,workClueList[i].clueInput)
         setNumberList(workNumberList)
       }
     }

@@ -5,7 +5,7 @@ import { getRandomNumber } from '../utils';
 import { clues } from '../constants';
 
 function App() {
-  const [number, setNumber] = useState(0);
+  const [numberToGuess, setNumberToGuess] = useState(0);
   const [showClues, setShowClues] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [score, setScore] = useState(0);
@@ -22,7 +22,7 @@ function App() {
   };
 
   const restart = () => {
-    setNumber(getRandomNumber(1, 100));
+    setNumberToGuess(getRandomNumber(1, 100));
     setShowClues(false);
     setErrorMessage('');
     setScore(0);
@@ -34,7 +34,7 @@ function App() {
   };
 
   useEffect(() => {
-    setNumber(getRandomNumber(1, 100));
+    setNumberToGuess(getRandomNumber(1, 100));
     generateBoard();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -43,11 +43,11 @@ function App() {
       setErrorMessage('Number cannot be 0 or greater than 100');
       return;
     }
-    if (guess !== number) {
+    if (guess !== numberToGuess) {
       setErrorMessage('Your guess was not correct');
       return;
     }
-    if (number === guess) {
+    if (numberToGuess === guess) {
       setErrorMessage('You guessed the number. Well done!');
       return;
     }
@@ -86,7 +86,7 @@ function App() {
               setClueList={setClueList}
               numberList={numberList}
               setNumberList={setNumberList}
-              number={number}
+              numberToGuess={numberToGuess}
               score={score}
               setScore={setScore}
             />
