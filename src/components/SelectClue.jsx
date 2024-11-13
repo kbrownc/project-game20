@@ -13,11 +13,14 @@ const SelectClue = ({
   setScore
 }) => {
   const editClueInput = (e, i) => {
-    // change value edit if inpout is string vs numeric?????????
-    const value = e.target.value.replace(/[^0-9]/gi, '');
+    console.log('numberToGuess',numberToGuess)
+    let value = e.target.value.replace(/[^0-9]/gi, '');
+    if (i === 2) {value = e.target.value};
+    console.log('value',value)
     let workClueList = [...clueList];
     workClueList[i].clueInput = value;
     setClueList(workClueList);
+    console.log('input',workClueList)
   };
 
   const editGuess = e => {
@@ -75,6 +78,26 @@ const SelectClue = ({
         setNumberList(workNumberList)
       }
     }
+    if (workClueList[i].id === '3') {
+      if ((numberToGuess < 51 && workClueList[i].clueInput === 'higher') ||
+          (numberToGuess > 49 && workClueList[i].clueInput === 'lower')) {
+        setErrorMessage('Number is lower-higher than 50 and you guessed wrong');
+      } else {
+        for (let j = 0; j < workNumberList.length; j++) {
+          if (workClueList[i].clueInput === 'lower' && workNumberList[j] < 51) {
+            workNumberList.splice(j,1)
+            j--
+            setErrorMessage('');
+          }
+          if (workClueList[i].clueInput === 'higher' && workNumberList[j] > 50) {
+            workNumberList.splice(j,1)
+            j--
+            setErrorMessage('');
+          }
+        }
+        setNumberList(workNumberList)
+      }
+    }
   }
 
   return (
@@ -103,7 +126,7 @@ const SelectClue = ({
                 onChange={e => editClueInput(e, i)}
               />
             ) : (
-              <select onChange={e => editClueInput(e, i)}>
+              <select className="clueSelect" onChange={e => editClueInput(e, i)}>
                 {clue.validInput.map((valid, i) => (
                   <option key={i} value={valid}>{valid}</option>
                 ))}

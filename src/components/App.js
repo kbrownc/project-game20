@@ -11,7 +11,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [numberList, setNumberList] = useState([]);
   const [guess, setGuess] = useState('');
-  const [clueList, setClueList] = useState(clues);
+  const [clueList, setClueList] = useState(JSON.parse(JSON.stringify(clues)));
 
   const generateBoard = () => {
     let workNumberList = [];
@@ -29,8 +29,20 @@ function App() {
     setNumberList([]);
     generateBoard();
     setGuess('');
-    setClueList(clues);
+    setClueList(JSON.parse(JSON.stringify(clues)));
+    resetOptionsInput()
     console.clear();
+  };
+
+  const resetOptionsInput = () => {
+    let clear = document.getElementsByClassName("clueSelect")
+    for (let j=0; j < clear.length; j++) {
+      for (let k=0; k < clear[j].length; k++) {
+        if (clear[j].options[k].selected) {
+          clear[j].options[k].selected = false;
+        }
+      }
+    }
   };
 
   useEffect(() => {
