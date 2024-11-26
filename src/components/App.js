@@ -30,14 +30,14 @@ function App() {
     generateBoard();
     setGuess('');
     setClueList(JSON.parse(JSON.stringify(clues)));
-    resetOptionsInput()
+    resetOptionsInput();
     console.clear();
   };
 
   const resetOptionsInput = () => {
-    let clear = document.getElementsByClassName("clueSelect")
-    for (let j=0; j < clear.length; j++) {
-      for (let k=0; k < clear[j].length; k++) {
+    let clear = document.getElementsByClassName('clueSelect');
+    for (let j = 0; j < clear.length; j++) {
+      for (let k = 0; k < clear[j].length; k++) {
         if (clear[j].options[k].selected) {
           clear[j].options[k].selected = false;
         }
