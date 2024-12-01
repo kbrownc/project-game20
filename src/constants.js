@@ -4,9 +4,9 @@ export const clues = [
 	{ id: '3', clue: 'higher or lower than 50', used: false, needsInput: false, clueInput: '', validInput: ['','lower', 'higher']},
 	{ id: '4', clue: 'within 10  plus or minus of player supplied number', used: false, needsInput: true, clueInput: ''},
 	{ id: '5', clue: 'Contains a repeating digit', used: false, needsInput: false, clueInput: '', validInput: ['','has dup', 'no dup']},
-	{ id: '6', clue: 'Has all digirs ascending or descending?', used: false, needsInput: false, clueInput: '', validInput: ['','in order','not in order']},
-	{ id: '7', clue: 'Is a square roo', used: false, needsInput: false, clueInput: '', validInput: ['','is', 'is not']},
-	{ id: '8', clue: 'All digits are even or odd', used: false, needsInput: false, clueInput: '', validInput: ['','even','odd']},
+	{ id: '6', clue: 'Has all digirs ascending or descending?', used: false, needsInput: false, clueInput: '', validInput: ['','ascending','descending']},
+	{ id: '7', clue: 'Is a square root', used: false, needsInput: false, clueInput: '', validInput: ['','is', 'is not']},
+	{ id: '8', clue: 'All digits are even or odd', used: false, needsInput: false, clueInput: '', validInput: ['','evenOdd','mixed']},
 	]
 
 export const errorMessages = [
@@ -15,7 +15,7 @@ export const errorMessages = [
 	'Number is lower-higher than 50 and you guessed wrong',
 	'Number is not within 10 pf the number you guessed',
 	'Number has-has not got dup digits',
-	'Message 6',
-	'Message 7',
-	'Message 8'
+	'Number is ascending vs descending guess was wrong',
+	'Number is or is not a square root',
+	'Number is all even - odd or mixed'
 	]
