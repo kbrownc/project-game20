@@ -16,7 +16,7 @@ const SelectClue = ({
   const editClueInput = (e, i) => {
     console.log('numberToGuess', numberToGuess);
     let value = e.target.value.replace(/[^0-9]/gi, '');
-    if (i === 2 || i === 4) {
+    if (i === 2 || i === 4 || i === 5 || i === 6 || i === 7) {
       value = e.target.value;
     }
     let workClueList = [...clueList];
@@ -30,6 +30,7 @@ const SelectClue = ({
   };
 
   function handleCheckboxChange(i) {
+    console.log(clueList);
     let workClueList = [...clueList];
     if (workClueList[i].used === false) {
       workClueList[i].used = true;
@@ -106,9 +107,9 @@ const SelectClue = ({
     let clueTest;
     if (workClueList.id === '1') clueTest = workNumberList[j] % workClueList.clueInput !== 0 ? true : false;
     if (workClueList.id === '2')
-      clueTest = (workClueList.clueInput === '1' && workNumberList[j] > 9)(
-        workClueList.clueInput === '2' && workNumberList[j] < 10
-      );
+      clueTest =
+        (workClueList.clueInput === '1' && workNumberList[j] > 9) ||
+        (workClueList.clueInput === '2' && workNumberList[j] < 10);
     if (workClueList.id === '3')
       clueTest = (workClueList.clueInput === 'lower' && workNumberList[j] < 51)(
         workClueList.clueInput === 'higher' && workNumberList[j] > 50
@@ -142,7 +143,6 @@ const SelectClue = ({
 
   function isAscening(N) {
     const asc = /^0*1*2*3*4*5*6*7*8*9*$/;
-    console.log(asc.test(N));
     if (asc.test(N)) {
       return true;
     } else {
@@ -152,7 +152,6 @@ const SelectClue = ({
 
   function isExactSquareRoot(N) {
     let x = Math.sqrt(N);
-    console.log('N', N, x - Math.trunc(x));
     if (x - Math.trunc(x) === 0) {
       return true;
     } else {
@@ -164,7 +163,6 @@ const SelectClue = ({
     let NArray = N.toString().split('');
     let evenOdd = '';
     let evenOrOdd = false;
-    console.log('N', N, 'NArray', NArray);
     for (let k = 0; k < NArray.length; k++) {
       if (k === 0) {
         if (NArray[k] % 2 === 0) {
