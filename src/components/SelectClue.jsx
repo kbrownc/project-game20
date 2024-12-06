@@ -79,15 +79,15 @@ const SelectClue = ({
     if (workClueList.id === '3')
       clueTest =
         (numberToGuess < 51 && workClueList.clueInput === 'higher') ||
-        (numberToGuess > 49 && workClueList.clueInput === 'lower');
+        (numberToGuess > 50 && workClueList.clueInput === 'lower');
     if (workClueList.id === '4')
       clueTest =
         numberToGuess < parseInt(workClueList.clueInput) - 10 ||
         numberToGuess > parseInt(workClueList.clueInput) + 10;
     if (workClueList.id === '5')
       clueTest =
-        (hasRepeatingdigits(numberToGuess) && workClueList.clueInput === 'no dup)') ||
-        (!hasRepeatingdigits(numberToGuess) && workClueList.clueInput === 'has dup)');
+        (hasRepeatingdigits(numberToGuess) && workClueList.clueInput === 'no dup') ||
+        (!hasRepeatingdigits(numberToGuess) && workClueList.clueInput === 'has dup');
     if (workClueList.id === '6')
       clueTest =
         (isAscening(numberToGuess) && workClueList.clueInput !== 'ascending') ||
@@ -111,9 +111,9 @@ const SelectClue = ({
         (workClueList.clueInput === '1' && workNumberList[j] > 9) ||
         (workClueList.clueInput === '2' && workNumberList[j] < 10);
     if (workClueList.id === '3')
-      clueTest = (workClueList.clueInput === 'lower' && workNumberList[j] < 51)(
-        workClueList.clueInput === 'higher' && workNumberList[j] > 50
-      );
+      clueTest =
+        (workClueList.clueInput === 'lower' && workNumberList[j] < 51) ||
+        (workClueList.clueInput === 'higher' && workNumberList[j] > 50);
     if (workClueList.id === '4')
       clueTest =
         workNumberList[j] < parseInt(workClueList.clueInput) - 10 ||
@@ -187,38 +187,40 @@ const SelectClue = ({
     <>
       <br />
       <div>
-        {clueList.map((clue, i) => (
-          <div key={clue.clue}>
-            <input
-              type="checkbox"
-              name="select"
-              key="{clue.clue}"
-              checked={clueList.filter(item => item.id === clue.id)[0].used === true ? 'checked' : ''}
-              value={clueList.filter(item => item.clue === clue.clue)}
-              onChange={() => handleCheckboxChange(i)}
-            />
-            <label className="modal-label">{clue.clue}</label>
-            {clue.needsInput ? (
+        {clueList.map((clue, i) =>
+          !clue.used ? (
+            <div key={clue.clue}>
               <input
-                required
-                name="value"
-                className="selected"
-                type="text"
-                value={clue.clueInput}
-                maxLength="2"
-                onChange={e => editClueInput(e, i)}
+                type="checkbox"
+                name="select"
+                key="{clue.clue}"
+                checked={clue.used === true ? 'checked' : ''}
+                value={clueList.filter(item => item.clue === clue.clue)}
+                onChange={() => handleCheckboxChange(i)}
               />
-            ) : (
-              <select className="clueSelect" onChange={e => editClueInput(e, i)}>
-                {clue.validInput.map((valid, i) => (
-                  <option key={i} value={valid}>
-                    {valid}
-                  </option>
-                ))}
-              </select>
-            )}
-          </div>
-        ))}
+              <label className="modal-label">{clue.clue}</label>
+              {clue.needsInput ? (
+                <input
+                  required
+                  name="value"
+                  className="selected"
+                  type="text"
+                  value={clue.clueInput}
+                  maxLength="2"
+                  onChange={e => editClueInput(e, i)}
+                />
+              ) : (
+                <select className="clueSelect" onChange={e => editClueInput(e, i)}>
+                  {clue.validInput.map((valid, i) => (
+                    <option key={i} value={valid}>
+                      {valid}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </div>
+          ) : null
+        )}
         <br />
         <label>Guess</label>
         <input

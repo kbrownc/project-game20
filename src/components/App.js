@@ -22,7 +22,9 @@ function App() {
   };
 
   const restart = () => {
-    setNumberToGuess(getRandomNumber(1, 100));
+    //setNumberToGuess(getRandomNumber(1, 100));
+    // Test
+    setNumberToGuess(50);
     setShowClues(false);
     setErrorMessage('');
     setScore(0);
@@ -46,7 +48,10 @@ function App() {
   };
 
   useEffect(() => {
-    setNumberToGuess(getRandomNumber(1, 100));
+    //setNumberToGuess(getRandomNumber(1, 100));
+    // Test
+    setNumberToGuess(50);
+    //
     generateBoard();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
