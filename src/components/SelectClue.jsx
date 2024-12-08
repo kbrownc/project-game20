@@ -43,7 +43,7 @@ const SelectClue = ({
     }
     removeNumbers(i, workClueList);
     setClueList(workClueList);
-    setScore(score + 5);
+    setScore(score - 5);
   }
 
   function removeNumbers(i, workClueList) {
@@ -56,6 +56,7 @@ const SelectClue = ({
       }
     }
     setNumberList(workNumberList);
+    setScore(score - 5);
   }
 
   function errorCheck(i, workClueList, workNumberList) {

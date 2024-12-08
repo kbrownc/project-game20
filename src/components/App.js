@@ -8,7 +8,7 @@ function App() {
   const [numberToGuess, setNumberToGuess] = useState(0);
   const [showClues, setShowClues] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(100);
   const [numberList, setNumberList] = useState([]);
   const [guess, setGuess] = useState('');
   const [clueList, setClueList] = useState(JSON.parse(JSON.stringify(clues)));
@@ -22,12 +22,12 @@ function App() {
   };
 
   const restart = () => {
-    //setNumberToGuess(getRandomNumber(1, 100));
+    //setNumberToGuess(getRandomNumber(1, 99));
     // Test
     setNumberToGuess(50);
     setShowClues(false);
     setErrorMessage('');
-    setScore(0);
+    setScore(100);
     setNumberList([]);
     generateBoard();
     setGuess('');
@@ -48,7 +48,7 @@ function App() {
   };
 
   useEffect(() => {
-    //setNumberToGuess(getRandomNumber(1, 100));
+    //setNumberToGuess(getRandomNumber(1, 99));
     // Test
     setNumberToGuess(50);
     //
@@ -56,12 +56,15 @@ function App() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const guessButton = () => {
+    setScore(score - 1);
     if (guess === '0') {
       setErrorMessage('Number cannot be 0 or greater than 100');
+      setGuess('')
       return;
     }
     if (guess !== numberToGuess) {
       setErrorMessage('Your guess was not correct');
+      setGuess('')
       return;
     }
     if (numberToGuess === guess) {
@@ -76,9 +79,9 @@ function App() {
 
   function aboutButton() {
     let alertMessage =
-      'The App will generate a random number from 1 to 100. Your job is to guess that number. ' +
+      'The App will generate a random number from 1 to 99. Your job is to guess that number. ' +
       'There are a series of clues you can select to reduce the number of choices you have left. ' +
-      'Each guess adds 1 to your score. Each clue adds 5 to your score. Try to get a low score.  ';
+      'Each guess removes 1 from your score. Each clue removes 5 from your score. Try to get a high score.  ';
     alert(alertMessage);
   }
 
@@ -86,14 +89,14 @@ function App() {
     <div>
       <div className="App">
         <h1>Guess the Number</h1>
-        <div className="score"> Score: {score}</div>
         <div>{errorMessage}</div>
       </div>
-      <p>Pick a CLUE to help you</p>
       {!showClues ? (
         <div>
           <button onClick={() => aboutButton()}>About</button>
           <button onClick={() => guessButton()}>Guess</button>
+          <span className="score"> Score: {score}</span>
+          <p>Pick a CLUE to help you</p>
           <div>
             <SelectClue
               setErrorMessage={setErrorMessage}
