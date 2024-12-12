@@ -11,3 +11,19 @@ button {
   color: white;
   margin: 2px;
 }
+input {
+  width: 25px;
+}
+.board {
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+}
+.clue {
+  float: left;
+  width: 200px;
+}
+.score {
+  float: right;
+  width: 100px;
+}

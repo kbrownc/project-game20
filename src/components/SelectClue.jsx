@@ -3,8 +3,6 @@ import { errorMessages } from '../constants';
 
 const SelectClue = ({
   setErrorMessage,
-  guess,
-  setGuess,
   clueList,
   setClueList,
   numberList,
@@ -22,11 +20,6 @@ const SelectClue = ({
     let workClueList = [...clueList];
     workClueList[i].clueInput = value;
     setClueList(workClueList);
-  };
-
-  const editGuess = e => {
-    const value = e.target.value.replace(/[^0-9]/gi, '');
-    setGuess(value);
   };
 
   function handleCheckboxChange(i) {
@@ -199,7 +192,7 @@ const SelectClue = ({
                 value={clueList.filter(item => item.clue === clue.clue)}
                 onChange={() => handleCheckboxChange(i)}
               />
-              <label className="modal-label">{clue.clue}</label>
+              <label>{clue.clue}</label>
               {clue.needsInput ? (
                 <input
                   required
@@ -223,16 +216,6 @@ const SelectClue = ({
           ) : null
         )}
         <br />
-        <label>Guess</label>
-        <input
-          required
-          name="value"
-          className="selected"
-          type="text"
-          value={guess || ''}
-          maxLength="2"
-          onChange={editGuess}
-        />
       </div>
     </>
   );

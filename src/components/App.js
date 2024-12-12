@@ -56,22 +56,31 @@ function App() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const guessButton = () => {
-    setScore(score - 1);
     if (guess === '0') {
-      setErrorMessage('Number cannot be 0 or greater than 100');
-      setGuess('')
+      setErrorMessage('Number cannot be 0');
+      setGuess('');
       return;
     }
-    if (guess !== numberToGuess) {
+    if (Number(guess) !== numberToGuess) {
       setErrorMessage('Your guess was not correct');
-      setGuess('')
+      setGuess('');
+      removeGuessNumber();
       return;
     }
-    if (numberToGuess === guess) {
+    if (numberToGuess === Number(guess)) {
       setErrorMessage('You guessed the number. Well done!');
       return;
     }
   };
+
+  function removeGuessNumber() {
+    let workNumberList = [...numberList];
+    let index = workNumberList.indexOf(Number(guess));
+    workNumberList.splice(index, 1);
+    setNumberList(workNumberList);
+    setScore(score - 1);
+    setGuess('');
+  }
 
   const gotoBoard = () => {
     showClues === true ? setShowClues(false) : setShowClues(true);
@@ -85,6 +94,11 @@ function App() {
     alert(alertMessage);
   }
 
+  const editGuess = e => {
+    const value = e.target.value.replace(/[^0-9]/gi, '');
+    setGuess(value);
+  };
+
   return (
     <div>
       <div className="App">
@@ -93,15 +107,25 @@ function App() {
       </div>
       {!showClues ? (
         <div>
-          <button onClick={() => aboutButton()}>About</button>
-          <button onClick={() => guessButton()}>Guess</button>
+          <div>
+            <button onClick={() => guessButton()}>Guess</button>
+            <input
+              required
+              name="value"
+              className="selected"
+              type="text"
+              value={guess || ''}
+              maxLength="2"
+              onChange={editGuess}
+            />
+            <br />
+            <br />
+          </div>
+          <span className="clue">Pick a CLUE to help you</span>
           <span className="score"> Score: {score}</span>
-          <p>Pick a CLUE to help you</p>
           <div>
             <SelectClue
               setErrorMessage={setErrorMessage}
-              guess={guess}
-              setGuess={setGuess}
               clueList={clueList}
               setClueList={setClueList}
               numberList={numberList}
@@ -117,6 +141,7 @@ function App() {
           <Board errorMessage={errorMessage} setErrorMessage={setErrorMessage} numberList={numberList} />
         </div>
       )}
+      <button onClick={() => aboutButton()}>About</button>
       <button onClick={() => restart()}>Restart</button>
       <button onClick={() => gotoBoard()}>{showClues ? 'Show Clues' : 'Show Numbers'}</button>
     </div>
