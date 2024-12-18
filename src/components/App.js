@@ -102,8 +102,8 @@ function App() {
   return (
     <div>
       <div className="App">
-        <h1>Guess the Number</h1>
-        <div>{errorMessage}</div>
+        <h1 className="title">Guess the Number</h1>
+        <div className="message">{errorMessage}</div>
       </div>
       {!showClues ? (
         <div>

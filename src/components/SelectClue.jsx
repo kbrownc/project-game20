@@ -14,7 +14,7 @@ const SelectClue = ({
   const editClueInput = (e, i) => {
     console.log('numberToGuess', numberToGuess);
     let value = e.target.value.replace(/[^0-9]/gi, '');
-    if (i === 2 || i === 4 || i === 5 || i === 6 || i === 7) {
+    if (i === 2 || i === 3 || i === 4 || i === 5 || i === 6 || i === 7) {
       value = e.target.value;
     }
     let workClueList = [...clueList];
@@ -23,18 +23,21 @@ const SelectClue = ({
   };
 
   function handleCheckboxChange(i) {
-    console.log(clueList);
     let workClueList = [...clueList];
-    if (workClueList[i].used === false) {
-      workClueList[i].used = true;
-    } else {
-      workClueList[i].used = false;
-    }
+    console.log(workClueList);
+    // if (workClueList[i].used === false) {
+    //   workClueList[i].used = true;
+    // } else {
+    //   workClueList[i].used = false;
+    // }
     if (workClueList[i].clueInput === '') {
       setErrorMessage('Input not supplied for this clue');
-      workClueList[i].used = false;
+      //workClueList[i].used = false;
+    } else {
+      workClueList[i].used = true;
+      removeNumbers(i, workClueList);
     }
-    removeNumbers(i, workClueList);
+    //removeNumbers(i, workClueList);
     setClueList(workClueList);
     setScore(score - 5);
   }
@@ -106,8 +109,9 @@ const SelectClue = ({
         (workClueList.clueInput === '2' && workNumberList[j] < 10);
     if (workClueList.id === '3')
       clueTest =
-        (workClueList.clueInput === 'lower' && workNumberList[j] < 51) ||
-        (workClueList.clueInput === 'higher' && workNumberList[j] > 50);
+        ((workClueList.clueInput === 'lower' && workNumberList[j] < 51) ||
+        (workClueList.clueInput === 'higher' && workNumberList[j] > 50)) &&
+        (workNumberList[j] !== numberToGuess);
     if (workClueList.id === '4')
       clueTest =
         workNumberList[j] < parseInt(workClueList.clueInput) - 10 ||

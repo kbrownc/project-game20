@@ -22,8 +22,24 @@ input {
 .clue {
   float: left;
   width: 200px;
+  background-color: black;
 }
 .score {
   float: right;
   width: 100px;
+  color: black;
+  font-weight: bold;
+  background-color: white;
+}
+.message {
+  color: black;
+  font-weight: bold;
+  background-color: white;
+  margin: 1pc;
+}
+.title {
+  width: 300px;
+  color: red;
+  font-weight: bold;
+  background-color: yellow;
 }
