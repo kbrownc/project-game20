@@ -7,7 +7,7 @@ const Board = ({ errorMessage, setErrorMessage, numberList }) => {
       <div className="board">Remaining numbers:</div>
       <div>
         {numberList.map((number, i) => (
-          <Square key={i} number={number}/>
+          <Square key={i} number={number} i={i}/>
         ))}
       </div>
     </div>

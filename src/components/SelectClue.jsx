@@ -75,8 +75,8 @@ const SelectClue = ({
         (numberToGuess > 9 && workClueList.clueInput === '1');
     if (workClueList.id === '3')
       clueTest =
-        (numberToGuess < 51 && workClueList.clueInput === 'higher') ||
-        (numberToGuess > 50 && workClueList.clueInput === 'lower');
+        (numberToGuess < 51 && workClueList.clueInput === 'true') ||
+        (numberToGuess > 50 && workClueList.clueInput === 'false');
     if (workClueList.id === '4')
       clueTest =
         numberToGuess < parseInt(workClueList.clueInput) - 10 ||
@@ -109,8 +109,8 @@ const SelectClue = ({
         (workClueList.clueInput === '2' && workNumberList[j] < 10);
     if (workClueList.id === '3')
       clueTest =
-        ((workClueList.clueInput === 'lower' && workNumberList[j] < 51) ||
-        (workClueList.clueInput === 'higher' && workNumberList[j] > 50)) &&
+        ((workClueList.clueInput === 'false' && workNumberList[j] < 51) ||
+        (workClueList.clueInput === 'true' && workNumberList[j] > 50)) &&
         (workNumberList[j] !== numberToGuess);
     if (workClueList.id === '4')
       clueTest =
@@ -122,8 +122,8 @@ const SelectClue = ({
         (hasRepeatingdigits(workNumberList[j]) && workClueList.clueInput === 'no dup');
     if (workClueList.id === '6')
       clueTest =
-        (isAscening(workNumberList[j]) && workClueList.clueInput === 'ascending') ||
-        (!isAscening(workNumberList[j]) && workClueList.clueInput === 'descending');
+        (isAscening(workNumberList[j]) && workClueList.clueInput === 'descending') ||
+        (!isAscening(workNumberList[j]) && workClueList.clueInput === 'ascending');
     if (workClueList.id === '7')
       clueTest =
         (isExactSquareRoot(workNumberList[j]) && workClueList.clueInput === 'is') ||
