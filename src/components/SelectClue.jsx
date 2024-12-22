@@ -24,20 +24,12 @@ const SelectClue = ({
 
   function handleCheckboxChange(i) {
     let workClueList = [...clueList];
-    console.log(workClueList);
-    // if (workClueList[i].used === false) {
-    //   workClueList[i].used = true;
-    // } else {
-    //   workClueList[i].used = false;
-    // }
     if (workClueList[i].clueInput === '') {
       setErrorMessage('Input not supplied for this clue');
-      //workClueList[i].used = false;
     } else {
       workClueList[i].used = true;
       removeNumbers(i, workClueList);
     }
-    //removeNumbers(i, workClueList);
     setClueList(workClueList);
     setScore(score - 5);
   }
@@ -126,12 +118,12 @@ const SelectClue = ({
         (!isAscening(workNumberList[j]) && workClueList.clueInput === 'ascending');
     if (workClueList.id === '7')
       clueTest =
-        (isExactSquareRoot(workNumberList[j]) && workClueList.clueInput === 'is') ||
-        (!isExactSquareRoot(workNumberList[j]) && workClueList.clueInput === 'is not');
+        (isExactSquareRoot(workNumberList[j]) && workClueList.clueInput === 'is not') ||
+        (!isExactSquareRoot(workNumberList[j]) && workClueList.clueInput === 'is');
     if (workClueList.id === '8')
       clueTest =
-        (isEvenOrOddDigits(workNumberList[j]) && workClueList.clueInput === 'evenOdd') ||
-        (!isEvenOrOddDigits(workNumberList[j]) && workClueList.clueInput === 'mixed');
+        (isEvenOrOddDigits(workNumberList[j]) && workClueList.clueInput === 'mixed') ||
+        (!isEvenOrOddDigits(workNumberList[j]) && workClueList.clueInput === 'evenOdd');
     return clueTest;
   }
 
