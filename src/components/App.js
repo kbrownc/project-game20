@@ -11,7 +11,9 @@ function App() {
   const [score, setScore] = useState(100);
   const [numberList, setNumberList] = useState([]);
   const [guess, setGuess] = useState('');
-  const [clueList, setClueList] = useState(JSON.parse(JSON.stringify(clues)));
+  //const [clueList, setClueList] = useState(JSON.parse(JSON.stringify(clues)));
+  const [clueUsed, setClueUsed] = useState([false,false,false,false,false,false,false,false]);
+  const [clueInput, setClueInput] = useState(['','','','','','','','']);
 
   const generateBoard = () => {
     let workNumberList = [];
@@ -31,7 +33,9 @@ function App() {
     setNumberList([]);
     generateBoard();
     setGuess('');
-    setClueList(JSON.parse(JSON.stringify(clues)));
+    //setClueList(JSON.parse(JSON.stringify(clues)));
+    setClueUsed([false,false,false,false,false,false,false,false]);
+    setClueInput(['','','','','','','','']);
     resetOptionsInput();
     console.clear();
   };
@@ -126,8 +130,10 @@ function App() {
           <div>
             <SelectClue
               setErrorMessage={setErrorMessage}
-              clueList={clueList}
-              setClueList={setClueList}
+              clueInput={clueInput}
+              setClueInput={setClueInput}
+              clueUsed={clueUsed}     
+              setClueUsed={setClueUsed}     
               numberList={numberList}
               setNumberList={setNumberList}
               numberToGuess={numberToGuess}
