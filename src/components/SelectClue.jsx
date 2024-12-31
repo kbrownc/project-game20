@@ -30,18 +30,18 @@ const SelectClue = ({
     if (clueInput[i] === '') {
       setErrorMessage('Input not supplied for this clue');
     } else {
-      clueUsed[i] = true;
+      workClueUsed[i] = true;
       removeNumbers(i, clueInput);
     }
     setClueUsed(workClueUsed);
     setScore(score - 5);
   }
 
-  function removeNumbers(i, workClueInput) {
+  function removeNumbers(i, clueInput) {
     let workNumberList = [...numberList];
-    if (errorCheck(i, workClueInput[i], workNumberList)) return;
+    if (errorCheck(i, clueInput[i], workNumberList)) return;
     for (let j = 0; j < workNumberList.length; j++) {
-      if (removeNumbersfunction(i, workClueInput[i], workNumberList, j)) {
+      if (removeNumbersfunction(i, clueInput[i], workNumberList, j)) {
         workNumberList.splice(j, 1);
         j--;
       }
@@ -50,8 +50,8 @@ const SelectClue = ({
     setScore(score - 5);
   }
 
-  function errorCheck(i, workClueInput, workNumberList) {
-    if (errorCheckfunction(i,workClueInput, workNumberList)) {
+  function errorCheck(i, clueInput, workNumberList) {
+    if (errorCheckfunction(i,clueInput, workNumberList)) {
       setErrorMessage(errorMessages[i]);
       return true;
     } else {
@@ -61,7 +61,7 @@ const SelectClue = ({
   }
 
   // Did you select the correct option
-  function errorCheckfunction(i, workClueInput, workNumberList) {
+  function errorCheckfunction(i, clueInput, workNumberList) {
     //let clueTest = workClueList.find(({ id }) => workClueList.id === id).errCheck(numberToGuess, workClueList.clueInput);
     let clueTest = clues[i].errCheck(numberToGuess, clueInput);
     return clueTest;
@@ -136,58 +136,6 @@ const SelectClue = ({
     //     (isEvenOrOddDigits(workNumberList[j]) && workClueList.clueInput === 'mixed') ||
     //       (!isEvenOrOddDigits(workNumberList[j]) && workClueList.clueInput === 'evenOdd');
     // return clueTest;
-  }
-
-  function hasRepeatingdigits(N) {
-    return /([0-9]).*?\1/.test(N);
-  }
-
-  function isAscening(N) {
-    const asc = /^0*1*2*3*4*5*6*7*8*9*$/;
-    if (asc.test(N)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  function isExactSquareRoot(N) {
-    let x = Math.sqrt(N);
-    if (x - Math.trunc(x) === 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  function isEvenOrOddDigits(N) {
-    let NArray = N.toString().split('');
-    let evenOdd = '';
-    let evenOrOdd = false;
-    if (NArray.length === 1) {
-      evenOrOdd = true;
-      return evenOrOdd;
-    }
-    for (let k = 0; k < NArray.length; k++) {
-      if (k === 0) {
-        if (NArray[k] % 2 === 0) {
-          evenOdd = 'even';
-        } else {
-          evenOdd = 'odd';
-        }
-      } else {
-        if (NArray[k] % 2 === 0 && evenOdd === 'even') {
-          evenOrOdd = true;
-        } else {
-          if (NArray[k] % 2 !== 0 && evenOdd === 'odd') {
-            evenOrOdd = true;
-          } else {
-            evenOrOdd = false;
-          }
-        }
-      }
-    }
-    return evenOrOdd;
   }
 
   return (
