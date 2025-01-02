@@ -65,37 +65,6 @@ const SelectClue = ({
     //let clueTest = workClueList.find(({ id }) => workClueList.id === id).errCheck(numberToGuess, workClueList.clueInput);
     let clueTest = clues[i].errCheck(numberToGuess, clueInput);
     return clueTest;
-
-    // let clueTest;
-    // if (workClueList.id === '1') clueTest = numberToGuess % workClueList.clueInput !== 0;
-    // if (workClueList.id === '2')
-    //   clueTest =
-    //     (numberToGuess < 10 && workClueList.clueInput === '2') ||
-    //     (numberToGuess > 9 && workClueList.clueInput === '1');
-    // if (workClueList.id === '3')
-    //   clueTest =
-    //     (numberToGuess < 51 && workClueList.clueInput === 'true') ||
-    //     (numberToGuess > 50 && workClueList.clueInput === 'false');
-    // if (workClueList.id === '4')
-    //   clueTest =
-    //     numberToGuess < parseInt(workClueList.clueInput) - 10 ||
-    //     numberToGuess > parseInt(workClueList.clueInput) + 10;
-    // if (workClueList.id === '5')
-    //   clueTest =
-    //     (hasRepeatingdigits(numberToGuess) && workClueList.clueInput === 'no dup') ||
-    //     (!hasRepeatingdigits(numberToGuess) && workClueList.clueInput === 'has dup');
-    // if (workClueList.id === '6')
-    //   clueTest =
-    //     (isAscening(numberToGuess) && workClueList.clueInput !== 'ascending') ||
-    //     (!isAscening(numberToGuess) && workClueList.clueInput === 'ascending');
-    // if (workClueList.id === '7')
-    //   clueTest =
-    //     (isExactSquareRoot(numberToGuess) && workClueList.clueInput !== 'is') ||
-    //     (!isExactSquareRoot(numberToGuess) && workClueList.clueInput === 'is');
-    // if (workClueList.id === '8')
-    //   clueTest =
-    //     (isEvenOrOddDigits(numberToGuess) && workClueList.clueInput !== 'evenOdd') ||
-    //     (!isEvenOrOddDigits(numberToGuess) && workClueList.clueInput === 'evenOdd');
   }
 
   function removeNumbersfunction(i, workClueInput, workNumberList, j) {
@@ -103,39 +72,6 @@ const SelectClue = ({
       //workClueList.find(({ id }) => workClueList.id === id).verifyCheck(workNumberList[j], workClueList.clueInput);
       clues[i].verifyCheck(workNumberList[j], workClueInput);
     return clueTest;
-
-    // let clueTest;
-    // if (workClueList.id === '1') clueTest = workNumberList[j] % workClueList.clueInput !== 0 ? true : false;
-    // if (workClueList.id === '2')
-    //   clueTest =
-    //     (workClueList.clueInput === '1' && workNumberList[j] > 9) ||
-    //     (workClueList.clueInput === '2' && workNumberList[j] < 10);
-    // if (workClueList.id === '3')
-    //   clueTest =
-    //     ((workClueList.clueInput === 'false' && workNumberList[j] < 51) ||
-    //       (workClueList.clueInput === 'true' && workNumberList[j] > 50)) &&
-    //     workNumberList[j] !== numberToGuess;
-    // if (workClueList.id === '4')
-    //   clueTest =
-    //     workNumberList[j] < parseInt(workClueList.clueInput) - 10 ||
-    //     workNumberList[j] > parseInt(workClueList.clueInput) + 10;
-    // if (workClueList.id === '5')
-    //   clueTest =
-    //     (!hasRepeatingdigits(workNumberList[j]) && workClueList.clueInput === 'has dup') ||
-    //     (hasRepeatingdigits(workNumberList[j]) && workClueList.clueInput === 'no dup');
-    // if (workClueList.id === '6')
-    //   clueTest =
-    //     (isAscening(workNumberList[j]) && workClueList.clueInput === 'descending') ||
-    //     (!isAscening(workNumberList[j]) && workClueList.clueInput === 'ascending');
-    // if (workClueList.id === '7')
-    //   clueTest =
-    //     (isExactSquareRoot(workNumberList[j]) && workClueList.clueInput === 'is not') ||
-    //     (!isExactSquareRoot(workNumberList[j]) && workClueList.clueInput === 'is');
-    // if (workClueList.id === '8')
-    //   clueTest =
-    //     (isEvenOrOddDigits(workNumberList[j]) && workClueList.clueInput === 'mixed') ||
-    //       (!isEvenOrOddDigits(workNumberList[j]) && workClueList.clueInput === 'evenOdd');
-    // return clueTest;
   }
 
   return (

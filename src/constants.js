@@ -37,7 +37,7 @@ export const clues = [
 			return  (numberToGuess < 51 && clueInput === 'true') || (numberToGuess > 50 && clueInput === 'false');
 		},
 		verifyCheck: function (workNumberList, clueInput) {
-			return (clueInput === 'false' && workNumberList < 51) || (clueInput === 'true' && workNumberList > 50)
+			return (clueInput === 'false' && workNumberList > 50) || (clueInput === 'true' && workNumberList < 51)
 		},
 	},
 	{
