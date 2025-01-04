@@ -62,15 +62,12 @@ const SelectClue = ({
 
   // Did you select the correct option
   function errorCheckfunction(i, clueInput, workNumberList) {
-    //let clueTest = workClueList.find(({ id }) => workClueList.id === id).errCheck(numberToGuess, workClueList.clueInput);
     let clueTest = clues[i].errCheck(numberToGuess, clueInput);
     return clueTest;
   }
 
   function removeNumbersfunction(i, workClueInput, workNumberList, j) {
-    let clueTest = 
-      //workClueList.find(({ id }) => workClueList.id === id).verifyCheck(workNumberList[j], workClueList.clueInput);
-      clues[i].verifyCheck(workNumberList[j], workClueInput);
+    let clueTest = clues[i].verifyCheck(workNumberList[j], workClueInput);
     return clueTest;
   }
 

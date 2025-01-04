@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import SelectClue from './SelectClue';
 import Board from './Board';
 import { getRandomNumber } from '../utils';
-import { clues } from '../constants';
 
 function App() {
   const [numberToGuess, setNumberToGuess] = useState(0);
@@ -11,7 +10,6 @@ function App() {
   const [score, setScore] = useState(100);
   const [numberList, setNumberList] = useState([]);
   const [guess, setGuess] = useState('');
-  //const [clueList, setClueList] = useState(JSON.parse(JSON.stringify(clues)));
   const [clueUsed, setClueUsed] = useState([false,false,false,false,false,false,false,false]);
   const [clueInput, setClueInput] = useState(['','','','','','','','']);
 
@@ -26,14 +24,13 @@ function App() {
   const restart = () => {
     //setNumberToGuess(getRandomNumber(1, 99));
     // Test
-    setNumberToGuess(50);
+    setNumberToGuess(54);
     setShowClues(false);
     setErrorMessage('');
     setScore(100);
     setNumberList([]);
     generateBoard();
     setGuess('');
-    //setClueList(JSON.parse(JSON.stringify(clues)));
     setClueUsed([false,false,false,false,false,false,false,false]);
     setClueInput(['','','','','','','','']);
     resetOptionsInput();
@@ -54,7 +51,7 @@ function App() {
   useEffect(() => {
     //setNumberToGuess(getRandomNumber(1, 99));
     // Test
-    setNumberToGuess(50);
+    setNumberToGuess(54);
     //
     generateBoard();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -94,7 +91,8 @@ function App() {
     let alertMessage =
       'The App will generate a random number from 1 to 99. Your job is to guess that number. ' +
       'There are a series of clues you can select to reduce the number of choices you have left. ' +
-      'Each guess removes 1 from your score. Each clue removes 5 from your score. Try to get a high score.  ';
+      'Each guess removes 1 from your score. Each clue removes 5 from your score. Try to get a high score.  ' +
+      'NOTE: Numbers where both digits are equal are considered ascending digits..  ';
     alert(alertMessage);
   }
 
