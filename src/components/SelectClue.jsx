@@ -47,7 +47,6 @@ const SelectClue = ({
       }
     }
     setNumberList(workNumberList);
-    setScore(score - 5);
   }
 
   function errorCheck(i, clueInput, workNumberList) {

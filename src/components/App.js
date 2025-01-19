@@ -24,7 +24,7 @@ function App() {
   const restart = () => {
     setNumberToGuess(getRandomNumber(1, 99));
     // Test
-    //setNumberToGuess(54);
+    //setNumberToGuess(40);
     setShowClues(false);
     setErrorMessage('');
     setScore(100);
@@ -51,7 +51,7 @@ function App() {
   useEffect(() => {
     setNumberToGuess(getRandomNumber(1, 99));
     // Test
-    //setNumberToGuess(54);
+    //setNumberToGuess(40);
     //
     generateBoard();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -105,6 +105,7 @@ function App() {
     <div>
       <div className="App">
         <h1 className="title">Guess the Number</h1>
+        <div>{numberToGuess}</div>
         <div className="message">{errorMessage}</div>
       </div>
       {!showClues ? (

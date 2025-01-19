@@ -99,7 +99,7 @@ export const clues = [
 		needsInput: false,
 		validInput: ['', 'evenOdd', 'mixed'],
 		errCheck: function (numberToGuess, clueInput) {
-			return (isEvenOrOddDigits(numberToGuess) && clueInput !== 'mixed') ||
+			return (isEvenOrOddDigits(numberToGuess) && clueInput === 'mixed') ||
       			   (!isEvenOrOddDigits(numberToGuess) && clueInput === 'evenOdd');
 		},
 		verifyCheck: function (workNumberList, clueInput) {
@@ -117,5 +117,5 @@ export const errorMessages = [
 	'Number has-has not got dup digits',
 	'Number is ascending vs descending guess was wrong',
 	'Number is or is not a square root',
-	'Number is all even - odd or mixed',
+	'Sorry....you guessed wrong',
 ];
