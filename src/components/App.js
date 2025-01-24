@@ -108,7 +108,6 @@ function App() {
     <div>
       <div className="App">
         <h1 className="title">Guess the Number</h1>
-        <div>{numberToGuess}</div>
         <div className={guessClass ? 'guessed' : 'notGuessed'}>{errorMessage}</div>
       </div>
       {!showClues ? (
