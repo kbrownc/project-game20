@@ -110,12 +110,12 @@ export const clues = [
 ];
 
 export const errorMessages = [
-	'Number not divisible by chosen number',
+	'Number was not divisible by the number you chose',
 	'Number has a different number of digits than that selected',
-	'Number is lower-higher than 50 and you guessed wrong',
-	'Number is not within 10 pf the number you guessed',
-	'Number has-has not got dup digits',
-	'Number is ascending vs descending guess was wrong',
+	'Sorry, you guessed wrong',
+	'Number is not within 10 of the number you entered',
+	'Number has-has not got duplicate digits',
+	'Your ascending vs descending guess was wrong',
 	'Number is or is not a square root',
 	'Sorry....you guessed wrong',
 ];

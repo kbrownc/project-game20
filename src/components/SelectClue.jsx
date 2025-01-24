@@ -15,7 +15,6 @@ const SelectClue = ({
   setScore,
 }) => {
   const editClueInput = (e, i) => {
-    console.log('numberToGuess', numberToGuess);
     let value = e.target.value.replace(/[^0-9]/gi, '');
     if (i === 2 || i === 3 || i === 4 || i === 5 || i === 6 || i === 7) {
       value = e.target.value;

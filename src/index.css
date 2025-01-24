@@ -31,10 +31,18 @@ input {
   font-weight: bold;
   background-color: white;
 }
-.message {
+.notGuessed {
   color: black;
   font-weight: bold;
   background-color: white;
+  margin: 1pc;
+}
+.guessed {
+  color: black;
+  font-weight: bold;
+  background-color: yellow;
+  border-color: black;
+  border-style: solid;
   margin: 1pc;
 }
 .title {

@@ -10,6 +10,7 @@ function App() {
   const [score, setScore] = useState(100);
   const [numberList, setNumberList] = useState([]);
   const [guess, setGuess] = useState('');
+  const [guessClass, setGuessClass] = useState(false);
   const [clueUsed, setClueUsed] = useState([false,false,false,false,false,false,false,false]);
   const [clueInput, setClueInput] = useState(['','','','','','','','']);
 
@@ -34,6 +35,7 @@ function App() {
     setClueUsed([false,false,false,false,false,false,false,false]);
     setClueInput(['','','','','','','','']);
     resetOptionsInput();
+    setGuessClass(false);
     console.clear();
   };
 
@@ -51,7 +53,7 @@ function App() {
   useEffect(() => {
     setNumberToGuess(getRandomNumber(1, 99));
     // Test
-    //setNumberToGuess(40);
+    //setNumberToGuess(3);
     //
     generateBoard();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -70,6 +72,7 @@ function App() {
     }
     if (numberToGuess === Number(guess)) {
       setErrorMessage('You guessed the number. Well done!');
+      setGuessClass(true)
       return;
     }
   };
@@ -106,7 +109,7 @@ function App() {
       <div className="App">
         <h1 className="title">Guess the Number</h1>
         <div>{numberToGuess}</div>
-        <div className="message">{errorMessage}</div>
+        <div className={guessClass ? 'guessed' : 'notGuessed'}>{errorMessage}</div>
       </div>
       {!showClues ? (
         <div>
